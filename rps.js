@@ -27,13 +27,17 @@ function playRound(playerSelection, computerSelection) {
 //Plays five rounds and console.logs the winner
 function game() {
     for(let i = 0; i < 5; i++){
-        player = prompt("Choose rock, paper, or scissors:").toLowerCase();
-        computer = computerPlay();
-
+        let player = prompt("Choose rock, paper, or scissors:").toLowerCase();
+        let computer = computerPlay();
         let result = playRound(player, computer);
         console.log(result);
-    }
 
+        //If it's a tie, play an extra round
+        if (result == "It's a tie. Try again!") {
+            i--;
+        }
+    }
+    //Print overall win or loss
     if (playerScore > computerScore) {
         console.log ("You are the winner!");
     } else {
