@@ -1,7 +1,7 @@
-playerSelection = prompt("Choose rock, paper, or scissors:").toLowerCase();
-computerSelection = computerPlay();
+let playerScore = 0;
+let computerScore = 0;
 
-result = playRound(playerSelection, computerSelection);
+game();
 
 //Gets a random item from choices (rock, paper, scissors) and returns it computerSelection
 function computerPlay() {
@@ -15,15 +15,28 @@ function playRound(playerSelection, computerSelection) {
         return "It's a tie. Try again!";
     }
     else if ((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") ||       (playerSelection == "scissors" && computerSelection == "paper")) {
-        return ("You win! " + playerSelection + " beats " + computerSelection);
+        playerScore++;
+        return ("You win this round! " + playerSelection + " beats " + computerSelection);
     }
     else {
-        return ("You lose. " + computerSelection + " beats " + playerSelection);
+        computerScore++;
+        return ("You lose this round. " + computerSelection + " beats " + playerSelection);
     }
 }
 
-// function game() {
-//     for (let i = 0; i < 5; i++) {
+//Plays five rounds and console.logs the winner
+function game() {
+    for(let i = 0; i < 5; i++){
+        player = prompt("Choose rock, paper, or scissors:").toLowerCase();
+        computer = computerPlay();
 
-//     }
-// }
+        let result = playRound(player, computer);
+        console.log(result);
+    }
+
+    if (playerScore > computerScore) {
+        console.log ("You are the winner!");
+    } else {
+        console.log ("You lose. Try again.");
+    }
+}
